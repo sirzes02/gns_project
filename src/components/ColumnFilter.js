@@ -58,7 +58,10 @@ const ColumnFilter = ({ allColumns }) => {
                   placement="left"
                 >
                   <span className="mx-auto">
-                    <Button onClick={handlerClick}>Save</Button>
+                    <Button onClick={handlerClick}>
+                      {" "}
+                      <i className="material-icons">save</i>
+                    </Button>
                   </span>
                 </OverlayTrigger>
               </div>

@@ -15,13 +15,15 @@ const Search = ({ searchTitle, handlerChange, search, clear }) => {
           />
           <Form.Text className="text-muted">With an idea is enough.</Form.Text>
         </Card.Text>
-        <div className="row">
-          <div className="col-md-6">
-            <Button onClick={search}>Search</Button>
+        <div className="row text-center">
+          <div className="col">
+            <Button onClick={search}>
+              <i className="medium material-icons">search</i>
+            </Button>
           </div>
-          <div className="col-md-6">
+          <div className="col">
             <Button variant="danger" onClick={clear}>
-              Clear
+              <i className="medium material-icons">delete_forever</i>
             </Button>
           </div>
         </div>

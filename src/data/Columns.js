@@ -56,6 +56,7 @@ const Columns = {
       id: "image",
       Header: "Image",
       accessor: "image",
+      disableSortBy: true,
     },
   ],
 };

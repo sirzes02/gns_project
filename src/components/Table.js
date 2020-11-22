@@ -93,11 +93,13 @@ function Table({
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render("Header")}
                     <span>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? " 🔽"
-                          : " 🔼"
-                        : ""}
+                      <i className="small material-icons">
+                        {column.isSorted
+                          ? column.isSortedDesc
+                            ? "arrow_downward"
+                            : "arrow_upward"
+                          : ""}
+                      </i>
                     </span>
                   </th>
                 ))}
@@ -142,20 +144,20 @@ function Table({
             onClick={() => gotoPage(0)}
             disabled={!canPreviousPage}
           >
-            {"<<"}
+            <i className="material-icons">fast_rewind</i>
           </Button>
           <Button size="sm" onClick={previousPage} disabled={!canPreviousPage}>
-            {"<"}
+            <i className="material-icons">navigate_before</i>
           </Button>
           <Button size="sm" onClick={nextPage} disabled={!canNextPage}>
-            {">"}
+            <i className="material-icons">navigate_next</i>
           </Button>
           <Button
             size="sm"
             onClick={() => gotoPage(pageCount - 1)}
             disabled={!canNextPage}
           >
-            {">>"}
+            <i className="material-icons">fast_forward</i>
           </Button>
         </div>
       </div>
