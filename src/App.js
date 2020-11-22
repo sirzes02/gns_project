@@ -4,6 +4,7 @@ import requestData from "./data/content";
 import Search from "./components/Search";
 import Navbar from "./components/Navbar";
 import Columns from "./data/Columns";
+import ScrollTop from "./components/ScrollTop";
 
 const serverData = requestData;
 
@@ -67,6 +68,7 @@ function App() {
           />
         </div>
       </div>
+      <ScrollTop></ScrollTop>
     </>
   );
 }
