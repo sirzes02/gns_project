@@ -139,21 +139,16 @@ function Table({
           </tbody>
         </BTable>
         <div className="col pagination">
-          <Button
-            size="sm"
-            onClick={() => gotoPage(0)}
-            disabled={!canPreviousPage}
-          >
+          <Button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
             <i className="material-icons">fast_rewind</i>
           </Button>
-          <Button size="sm" onClick={previousPage} disabled={!canPreviousPage}>
+          <Button onClick={previousPage} disabled={!canPreviousPage}>
             <i className="material-icons">navigate_before</i>
           </Button>
-          <Button size="sm" onClick={nextPage} disabled={!canNextPage}>
+          <Button onClick={nextPage} disabled={!canNextPage}>
             <i className="material-icons">navigate_next</i>
           </Button>
           <Button
-            size="sm"
             onClick={() => gotoPage(pageCount - 1)}
             disabled={!canNextPage}
           >
