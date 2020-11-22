@@ -50,6 +50,10 @@ function Table({
   loading,
   pageCount: controlledPageCount,
 }) {
+  const hiddenColumns = localStorage.getItem("data")
+    ? JSON.parse(localStorage.getItem("data"))
+    : ["image"];
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -73,12 +77,12 @@ function Table({
     {
       columns,
       data,
-      initialState: { pageIndex: 0, hiddenColumns: ["image"] },
+      initialState: { pageIndex: 0, hiddenColumns },
       manualPagination: true,
       pageCount: controlledPageCount,
     },
-    //useSortBy,
     useGlobalFilter,
+    useSortBy,
     usePagination
   );
 
@@ -118,11 +122,7 @@ function Table({
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th
-                    {
-                      ...column.getHeaderProps(/*column.getSortByToggleProps()*/)
-                    }
-                  >
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render("Header")}
                     <span>
                       {column.isSorted
@@ -213,11 +213,27 @@ function Table({
                       <input
                         type="checkbox"
                         {...column.getToggleHiddenProps()}
-                      />{" "}
-                      {column.id}
+                      />
+                      {` ${column.id}`}
                     </label>
                   </div>
                 ))}
+                <div className="row mt-1">
+                  <Button
+                    className="mx-auto"
+                    onClick={() => {
+                      let names = allColumns
+                        .filter((column) => !column.isVisible)
+                        .map((column) => column.id);
+
+                      console.log(names);
+
+                      localStorage.setItem("data", JSON.stringify(names));
+                    }}
+                  >
+                    Save
+                  </Button>
+                </div>
               </Card.Body>
             </Accordion.Collapse>
           </Card>

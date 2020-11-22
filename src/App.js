@@ -3,73 +3,12 @@ import Table from "./components/Table";
 import requestData from "./data/content";
 import { Form, Button, Card } from "react-bootstrap";
 import Navbar from "./components/Navbar";
-import Swal from "sweetalert2";
+import Columns from "./data/Columns";
 
 const serverData = requestData;
 
 function App() {
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Books",
-        columns: [
-          {
-            id: "title",
-            Header: "Title",
-            accessor: "title",
-            Cell: ({ row }) => (
-              <p
-                style={{ cursor: "pointer" }}
-                onClick={() =>
-                  Swal.fire({
-                    title: row.values.title,
-                    text: row.values.subtitle,
-                    imageUrl: row.values.image,
-                    imageAlt: row.values.isbn13,
-                  })
-                }
-              >
-                <u>{row.values.title}</u>
-              </p>
-            ),
-          },
-          {
-            id: "subtitle",
-            Header: "Subtitle",
-            accessor: "subtitle",
-            width: 30,
-          },
-          {
-            id: "isbn",
-            Header: "ISBN",
-            accessor: "isbn13",
-          },
-          {
-            id: "price",
-            Header: "Price",
-            accessor: "price",
-            align: "right",
-          },
-          {
-            id: "url",
-            Header: "URL",
-            accessor: "url",
-            Cell: ({ row }) => (
-              <a href={row.values.url}>
-                <u>{row.values.url}</u>
-              </a>
-            ),
-          },
-          {
-            id: "image",
-            Header: "Image",
-            accessor: "image",
-          },
-        ],
-      },
-    ],
-    []
-  );
+  const columns = useMemo(() => [Columns], []);
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -122,19 +61,17 @@ function App() {
                 <Form.Text className="text-muted">
                   With an idea is enough.
                 </Form.Text>
-                <div className="row">
-                  <div className="col-md-6">
-                    <Button size="sm" onClick={search}>
-                      Search
-                    </Button>
-                  </div>
-                  <div className="col-md-6">
-                    <Button size="sm" variant="danger" onClick={clear}>
-                      Clear
-                    </Button>
-                  </div>
-                </div>
               </Card.Text>
+              <div className="row">
+                <div className="col-md-6">
+                  <Button onClick={search}>Search</Button>
+                </div>
+                <div className="col-md-6">
+                  <Button variant="danger" onClick={clear}>
+                    Clear
+                  </Button>
+                </div>
+              </div>
             </Card.Body>
           </Card>
           <div className="container"></div>
