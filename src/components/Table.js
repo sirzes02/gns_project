@@ -1,47 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BTable from "react-bootstrap/Table";
-import { Button, Form, Accordion, Card } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import {
   useTable,
   usePagination,
   useSortBy,
   useGlobalFilter,
-  useAsyncDebounce,
 } from "react-table";
-
-const GlobalFilter = ({
-  preGlobalFilteredRows,
-  globalFilter,
-  setGlobalFilter,
-}) => {
-  const count = preGlobalFilteredRows.length;
-  const [value, setValue] = useState(globalFilter);
-  const onChange = useAsyncDebounce((value) => {
-    setGlobalFilter(value || undefined);
-  }, 200);
-
-  return (
-    <span>
-      Search:{" "}
-      <Form.Control
-        as="input"
-        type="text"
-        value={value || ""}
-        onChange={(e) => {
-          setValue(e.target.value);
-          onChange(e.target.value);
-        }}
-        placeholder={`${count} records...`}
-        style={{
-          fontSize: "1.1rem",
-          border: "0",
-        }}
-        size="sm"
-      />
-    </span>
-  );
-};
+import GlobalFilter from "./GlobalFilter";
+import ColumnFilter from "./ColumnFilter";
 
 function Table({
   columns,
@@ -136,12 +104,7 @@ function Table({
               </tr>
             ))}
             <tr>
-              <th
-                colSpan={visibleColumns.length}
-                style={{
-                  textAlign: "left",
-                }}
-              >
+              <th colSpan={visibleColumns.length}>
                 <GlobalFilter
                   preGlobalFilteredRows={preGlobalFilteredRows}
                   globalFilter={globalFilter}
@@ -163,18 +126,17 @@ function Table({
               );
             })}
             <tr>
-              {loading ? (
-                <td colSpan="10000">Loading...</td>
-              ) : (
-                <td colSpan="10000">
-                  Showing {page.length} of ~{controlledPageCount * pageSize}
-                  results
-                </td>
-              )}
+              <td colSpan="10000">
+                {loading
+                  ? "Loading..."
+                  : `Showing ${page.length} of ~ ${
+                      controlledPageCount * pageSize
+                    } results`}
+              </td>
             </tr>
           </tbody>
         </BTable>
-        <div className="pagination">
+        <div className="col pagination">
           <Button
             size="sm"
             onClick={() => gotoPage(0)}
@@ -198,46 +160,7 @@ function Table({
         </div>
       </div>
       <div className="col-md-2 pr-4">
-        <Accordion>
-          <Card>
-            <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                Filter columns
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body>
-                {allColumns.map((column) => (
-                  <div key={column.id}>
-                    <label>
-                      <input
-                        type="checkbox"
-                        {...column.getToggleHiddenProps()}
-                      />
-                      {` ${column.id}`}
-                    </label>
-                  </div>
-                ))}
-                <div className="row mt-1">
-                  <Button
-                    className="mx-auto"
-                    onClick={() => {
-                      let names = allColumns
-                        .filter((column) => !column.isVisible)
-                        .map((column) => column.id);
-
-                      console.log(names);
-
-                      localStorage.setItem("data", JSON.stringify(names));
-                    }}
-                  >
-                    Save
-                  </Button>
-                </div>
-              </Card.Body>
-            </Accordion.Collapse>
-          </Card>
-        </Accordion>
+        <ColumnFilter allColumns={allColumns} />
       </div>
     </div>
   );
