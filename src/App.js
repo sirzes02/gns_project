@@ -16,7 +16,6 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(0);
   const [searched, setSearched] = useState(false);
-  const [searchTitle, setSearchTitle] = useState("");
   const fetchIdRef = useRef(0);
 
   const fetchData = useCallback(({ pageSize, pageIndex }) => {
@@ -35,29 +34,17 @@ const App = () => {
     }
   }, []);
 
-  const search = () => {
+  const search = (title) => {
     setSearched(true);
-    console.log(searchTitle);
+    console.log(title);
   };
-
-  const clear = () => {
-    setSearched(false);
-    setSearchTitle("");
-  };
-
-  const handlerChanges = (e) => setSearchTitle(e.target.value);
 
   return (
     <>
       <Navbar />
       <div className="row mt-3">
         <div className="col-md-2  pl-4">
-          <Search
-            searchTtile={searchTitle}
-            handlerChange={handlerChanges}
-            search={search}
-            clear={clear}
-          />
+          <Search search={search} />
           <div className="mt-4">
             <Download data={requestData} />
           </div>

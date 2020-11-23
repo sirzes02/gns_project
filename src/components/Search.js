@@ -1,28 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 
-const Search = ({ searchTitle, handlerChange, search, clear }) => {
+const Search = ({ search }) => {
+  const [searchTitle, setSearchTitle] = useState("");
+
   return (
     <Card>
       <Card.Header as="h5">Search a book</Card.Header>
       <Card.Body>
         <Card.Text>
           <Form.Control
+            id="title"
             type="text"
             value={searchTitle}
             placeholder="Enter a word"
-            onChange={handlerChange}
+            onChange={(e) => setSearchTitle(e.target.value)}
           />
           <Form.Text className="text-muted">With an idea is enough.</Form.Text>
         </Card.Text>
         <div className="row text-center">
           <div className="col">
-            <Button onClick={search}>
+            <Button
+              disabled={searchTitle.length <= 0}
+              onClick={() => search(searchTitle)}
+            >
               <i className="medium material-icons">search</i>
             </Button>
           </div>
           <div className="col">
-            <Button variant="danger" onClick={clear}>
+            <Button
+              variant="danger"
+              disabled={searchTitle.length <= 0}
+              onClick={() => setSearchTitle("")}
+            >
               <i className="medium material-icons">delete_forever</i>
             </Button>
           </div>

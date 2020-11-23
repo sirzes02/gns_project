@@ -13,36 +13,36 @@ const Download = ({ data }) => {
   };
 
   return (
-    <>
-      <Card>
-        <Card.Header as="h5">Download the list</Card.Header>
-        <Card.Body>
-          <Card.Text>
-            <Form.Check
-              inline
-              checked={formatCSV}
-              label="CSV"
-              onChange={() => setFormatCSV(!formatCSV)}
-            />
-            <Form.Check
-              inline
-              checked={formatXSL}
-              label="XSL"
-              onChange={() => setFormatXSL(!formatXSL)}
-            />
-          </Card.Text>
-          <div className="text-center">
-            <Button
-              variant="warning"
-              disabled={!formatCSV && !formatXSL}
-              onClick={download}
-            >
-              <i className="material-icons">file_download</i>
-            </Button>
-          </div>
-        </Card.Body>
-      </Card>
-    </>
+    <Card>
+      <Card.Header as="h5">Download the list</Card.Header>
+      <Card.Body>
+        <Card.Text>
+          <Form.Check
+            id="csvCheck"
+            inline
+            checked={formatCSV}
+            label="CSV"
+            onChange={() => setFormatCSV(!formatCSV)}
+          />
+          <Form.Check
+            id="xslCheck"
+            inline
+            checked={formatXSL}
+            label="XSL"
+            onChange={() => setFormatXSL(!formatXSL)}
+          />
+        </Card.Text>
+        <div className="text-center">
+          <Button
+            variant="warning"
+            disabled={!formatCSV && !formatXSL}
+            onClick={download}
+          >
+            <i className="material-icons">file_download</i>
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 
