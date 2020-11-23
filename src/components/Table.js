@@ -5,10 +5,11 @@ import {
   usePagination,
   useSortBy,
   useGlobalFilter,
+  useColumnOrder,
 } from "react-table";
 import BTable from "react-bootstrap/Table";
-import GlobalFilter from "./GlobalFilter";
-import ColumnFilter from "./ColumnFilter";
+import GlobalFilter from "./filters/GlobalFilter";
+import Filters from "./filters/Filters";
 
 function Table({
   columns,
@@ -40,6 +41,7 @@ function Table({
     preGlobalFilteredRows,
     setGlobalFilter,
     allColumns,
+    setColumnOrder,
   } = useTable(
     {
       columns,
@@ -50,7 +52,8 @@ function Table({
     },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
+    useColumnOrder
   );
 
   useEffect(() => {
@@ -156,7 +159,10 @@ function Table({
         </div>
       </div>
       <div className="col-md-2 pr-4">
-        <ColumnFilter allColumns={allColumns} />
+        <Filters
+          allColumns={allColumns}
+          changeOrder={(columns) => setColumnOrder(columns)}
+        />
       </div>
     </div>
   );
