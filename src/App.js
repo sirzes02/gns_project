@@ -5,10 +5,11 @@ import Search from "./components/Search";
 import Navbar from "./components/Navbar";
 import Columns from "./data/Columns";
 import ScrollTop from "./components/ScrollTop";
+import Download from "./components/Download";
 
 const serverData = requestData;
 
-function App() {
+const App = () => {
   const columns = useMemo(() => [Columns], []);
 
   const [data, setData] = useState([]);
@@ -57,6 +58,9 @@ function App() {
             search={search}
             clear={clear}
           />
+          <div className="mt-4">
+            <Download data={data} />
+          </div>
         </div>
         <div className="col-md-10">
           <Table
@@ -68,9 +72,9 @@ function App() {
           />
         </div>
       </div>
-      <ScrollTop></ScrollTop>
+      <ScrollTop />
     </>
   );
-}
+};
 
 export default App;
