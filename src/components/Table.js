@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Form } from "react-bootstrap";
 import {
   useTable,
@@ -11,13 +11,7 @@ import BTable from "react-bootstrap/Table";
 import GlobalFilter from "./filters/GlobalFilter";
 import Filters from "./filters/Filters";
 
-function Table({
-  columns,
-  data,
-  fetchData,
-  loading,
-  pageCount: controlledPageCount,
-}) {
+function Table({ columns, data, loading }) {
   const hiddenColumns = localStorage.getItem("data")
     ? JSON.parse(localStorage.getItem("data"))
     : ["image"];
@@ -47,18 +41,12 @@ function Table({
       columns,
       data,
       initialState: { pageIndex: 0, hiddenColumns },
-      manualPagination: true,
-      pageCount: controlledPageCount,
     },
     useGlobalFilter,
     useSortBy,
     usePagination,
     useColumnOrder
   );
-
-  useEffect(() => {
-    fetchData({ pageIndex, pageSize });
-  }, [fetchData, pageIndex, pageSize]);
 
   return (
     <div className="row">
@@ -77,7 +65,7 @@ function Table({
               value={pageSize}
               onChange={(e) => setPageSize(Number(e.target.value))}
             >
-              {[3, 5, 10, controlledPageCount * pageSize].map((pageSize) => (
+              {[3, 5, 10].map((pageSize) => (
                 <option key={pageSize} value={pageSize}>
                   Show {pageSize}
                 </option>
@@ -131,9 +119,7 @@ function Table({
               <td colSpan="10000">
                 {loading
                   ? "Loading..."
-                  : `Showing ${page.length} of ~ ${
-                      controlledPageCount * pageSize
-                    } results`}
+                  : `Showing ${page.length} of ~ ${preGlobalFilteredRows.length} results`}
               </td>
             </tr>
           </tbody>

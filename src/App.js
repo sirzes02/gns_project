@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useCallback } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Table from "./components/Table";
 import requestData from "./data/content";
 import Search from "./components/Search";
@@ -6,32 +6,19 @@ import Navbar from "./components/Navbar";
 import Columns from "./data/Columns";
 import ScrollTop from "./components/ScrollTop";
 import Download from "./components/Download";
-
-const serverData = requestData;
+import Books from "./api/Books";
 
 const App = () => {
   const columns = useMemo(() => [Columns], []);
+  const myBooks = new Books();
 
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [pageCount, setPageCount] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [searched, setSearched] = useState(false);
-  const fetchIdRef = useRef(0);
 
-  const fetchData = useCallback(({ pageSize, pageIndex }) => {
-    const fetchId = ++fetchIdRef.current;
-
-    setLoading(true);
-
-    if (fetchId === fetchIdRef.current) {
-      const startRow = pageSize * pageIndex;
-      const endRow = startRow + pageSize;
-      setData(serverData.slice(startRow, endRow));
-
-      setPageCount(Math.ceil(serverData.length / pageSize));
-
-      setLoading(false);
-    }
+  useEffect(() => {
+    setData(requestData);
+    setLoading(false);
   }, []);
 
   const search = (title) => {
@@ -50,13 +37,7 @@ const App = () => {
           </div>
         </div>
         <div className="col-md-10">
-          <Table
-            columns={columns}
-            data={data}
-            fetchData={fetchData}
-            loading={loading}
-            pageCount={pageCount}
-          />
+          <Table columns={columns} data={data} loading={loading} />
         </div>
       </div>
       <ScrollTop />
