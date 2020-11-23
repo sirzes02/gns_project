@@ -46,7 +46,7 @@ const App = () => {
         <div className="col-md-2  pl-4">
           <Search search={search} restoreData={restoreData} />
           <div className="mt-4">
-            <Download data={data1} />
+            <Download data={data} />
           </div>
         </div>
         <div className="col-md-10">
