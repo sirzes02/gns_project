@@ -2,7 +2,7 @@
 
 This is a technical project of [`Global Network Solutions`](https://www.gns.com.co/).
 
-On this youtube link you can see how and the requirements ordered as part of the technical test.
+On this youtube [link](https://www.youtube.com/watch?v=_HCRz7WIRWY) you can see how and the requirements ordered as part of the technical test.
 
 ## Installation
 
