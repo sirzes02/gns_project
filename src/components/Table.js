@@ -13,7 +13,7 @@ import Filters from "./filters/Filters";
 
 function Table({ columns, data, loading }) {
   const hiddenColumns = localStorage.getItem("data")
-    ? JSON.parse(localStorage.getItem("data"))
+    ? [...JSON.parse(localStorage.getItem("data")), "image"]
     : ["image"];
 
   const {
