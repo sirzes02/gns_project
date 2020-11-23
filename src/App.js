@@ -7,6 +7,7 @@ import Columns from "./data/Columns";
 import ScrollTop from "./components/ScrollTop";
 import Download from "./components/Download";
 import Books from "./api/Books";
+import { Button } from "react-bootstrap";
 
 const App = () => {
   const columns = useMemo(() => [Columns], []);
@@ -54,6 +55,7 @@ const App = () => {
         </div>
       </div>
       <ScrollTop />
+      <Button onClick={() => myBooks.getBooks()}></Button>
     </>
   );
 };
