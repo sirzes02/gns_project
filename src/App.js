@@ -59,7 +59,7 @@ const App = () => {
             clear={clear}
           />
           <div className="mt-4">
-            <Download data={data} />
+            <Download data={requestData} />
           </div>
         </div>
         <div className="col-md-10">

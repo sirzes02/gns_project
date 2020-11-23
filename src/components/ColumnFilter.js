@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 import {
   Button,
@@ -6,7 +7,6 @@ import {
   Tooltip,
   OverlayTrigger,
 } from "react-bootstrap";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 
 const ColumnFilter = ({ allColumns }) => {
@@ -59,7 +59,6 @@ const ColumnFilter = ({ allColumns }) => {
                 >
                   <span className="mx-auto">
                     <Button onClick={handlerClick}>
-                      {" "}
                       <i className="material-icons">save</i>
                     </Button>
                   </span>

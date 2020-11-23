@@ -32,7 +32,11 @@ const Download = ({ data }) => {
             />
           </Card.Text>
           <div className="text-center">
-            <Button variant="warning" onClick={download}>
+            <Button
+              variant="warning"
+              disabled={!formatCSV && !formatXSL}
+              onClick={download}
+            >
               <i className="material-icons">file_download</i>
             </Button>
           </div>

@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import BTable from "react-bootstrap/Table";
 import { Button, Form } from "react-bootstrap";
 import {
   useTable,
@@ -8,6 +6,7 @@ import {
   useSortBy,
   useGlobalFilter,
 } from "react-table";
+import BTable from "react-bootstrap/Table";
 import GlobalFilter from "./GlobalFilter";
 import ColumnFilter from "./ColumnFilter";
 
