@@ -14,7 +14,7 @@ class Json2Csv {
         .join(",")
     );
     csv.unshift(header.join(","));
-    csv = csv.join("\r\n");
+    csvResult = csv.join("\r\n");
   }
 
   download() {
