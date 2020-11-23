@@ -75,9 +75,7 @@ function Table({
               size="sm"
               as="select"
               value={pageSize}
-              onChange={(e) => {
-                setPageSize(Number(e.target.value));
-              }}
+              onChange={(e) => setPageSize(Number(e.target.value))}
             >
               {[3, 5, 10, controlledPageCount * pageSize].map((pageSize) => (
                 <option key={pageSize} value={pageSize}>
@@ -118,7 +116,7 @@ function Table({
             </tr>
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row, i) => {
+            {page.map((row) => {
               prepareRow(row);
 
               return (

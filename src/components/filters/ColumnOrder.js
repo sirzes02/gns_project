@@ -10,9 +10,7 @@ const ColumnOrder = ({ allColumns, changeOrder }) => {
 
   return (
     <Card.Body>
-      <div className="mb-4">
-        <h7>Drag and drop</h7>
-      </div>
+      <div className="mb-4">Drag and drop</div>
       <List
         values={columns}
         onChange={({ oldIndex, newIndex }) => {

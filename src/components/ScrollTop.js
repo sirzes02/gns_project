@@ -21,14 +21,11 @@ const ScrollTop = () => {
     });
 
   return (
-    <div
-      className="scroll-to-top"
-      style={{ position: "fixed", bottom: 0, right: 0, margin: 30 }}
-    >
+    <div className="scroll-to-top fixed-bottom m-3">
       {isVisible && (
         <OverlayTrigger
           overlay={<Tooltip id="tooltip-disabled">Scroll to top</Tooltip>}
-          placement="left"
+          placement="right"
         >
           <Button className="rounded-circle" onClick={scrollToTop}>
             <i className="material-icons">keyboard_arrow_up</i>

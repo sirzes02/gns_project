@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAsyncDebounce } from "react-table";
 import { Form } from "react-bootstrap";
+import styles from "../../styles/CommonsStyles";
 
 const GlobalFilter = ({
   preGlobalFilteredRows,
@@ -15,8 +16,9 @@ const GlobalFilter = ({
 
   return (
     <span>
-      Search:{" "}
+      Search:
       <Form.Control
+        className="border-0"
         as="input"
         type="text"
         value={value || ""}
@@ -25,10 +27,7 @@ const GlobalFilter = ({
           onChange(e.target.value);
         }}
         placeholder={`${count} records...`}
-        style={{
-          fontSize: "1.1rem",
-          border: "0",
-        }}
+        style={styles.fontsize}
         size="sm"
       />
     </span>
