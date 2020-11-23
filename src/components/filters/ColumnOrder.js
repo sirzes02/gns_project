@@ -1,13 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
 import React from "react";
-import {
-  Button,
-  Accordion,
-  Card,
-  Tooltip,
-  OverlayTrigger,
-} from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { Card } from "react-bootstrap";
 import { List, arrayMove } from "react-movable";
 
 const ColumnOrder = ({ allColumns, changeOrder }) => {
@@ -17,6 +10,9 @@ const ColumnOrder = ({ allColumns, changeOrder }) => {
 
   return (
     <Card.Body>
+      <div className="mb-4">
+        <h7>Drag and drop</h7>
+      </div>
       <List
         values={columns}
         onChange={({ oldIndex, newIndex }) => {

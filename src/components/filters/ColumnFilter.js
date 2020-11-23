@@ -1,20 +1,9 @@
 import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 import { Button, Card, Tooltip, OverlayTrigger } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
 
-const ColumnFilter = ({ allColumns }) => {
+const ColumnFilter = ({ allColumns, runToast }) => {
   const handlerClick = () => {
-    toast("New settings have been saved", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
     localStorage.setItem(
       "data",
       JSON.stringify(
@@ -42,25 +31,18 @@ const ColumnFilter = ({ allColumns }) => {
             placement="left"
           >
             <span className="mx-auto">
-              <Button onClick={handlerClick}>
+              <Button
+                onClick={() => {
+                  handlerClick();
+                  runToast();
+                }}
+              >
                 <i className="material-icons">save</i>
               </Button>
             </span>
           </OverlayTrigger>
         </div>
       </Card.Body>
-
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </>
   );
 };
