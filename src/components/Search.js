@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 
-const Search = ({ search }) => {
+const Search = ({ search, restoreData }) => {
   const [searchTitle, setSearchTitle] = useState("");
 
   return (
@@ -31,7 +31,10 @@ const Search = ({ search }) => {
             <Button
               variant="danger"
               disabled={searchTitle.length <= 0}
-              onClick={() => setSearchTitle("")}
+              onClick={() => {
+                setSearchTitle("");
+                restoreData();
+              }}
             >
               <i className="medium material-icons">delete_forever</i>
             </Button>

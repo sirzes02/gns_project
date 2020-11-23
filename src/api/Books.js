@@ -6,8 +6,6 @@ class Books {
   async getBooks(name = "mongodb") {
     let allData;
 
-    console.log(name);
-
     await axios
       .get(route + name)
       .then((data) => (allData = data))
