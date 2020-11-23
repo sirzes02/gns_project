@@ -7,7 +7,6 @@ import Columns from "./data/Columns";
 import ScrollTop from "./components/ScrollTop";
 import Download from "./components/Download";
 import Books from "./api/Books";
-import { Button } from "react-bootstrap";
 
 const App = () => {
   const columns = useMemo(() => [Columns], []);
@@ -25,17 +24,22 @@ const App = () => {
   }, []);
 
   const restoreData = () => {
-    if (searched) {
-      //setData(primaryData);
-      setData(primaryData);
-      setSearched(false);
-    }
+    setTimeout(() => {
+      if (searched) {
+        //setData(primaryData);
+        setData(primaryData);
+        setSearched(false);
+      }
+      setLoading(false);
+    }, 1000);
   };
 
   const search = (title) => {
     setLoading(true);
-    //setData(myBooks.getBooks(title));
-    setData(data2);
+    setTimeout(() => {
+      //setData(myBooks.getBooks(title));
+      setData(data2);
+    }, 1000);
     setSearched(true);
     setLoading(false);
   };
@@ -55,7 +59,6 @@ const App = () => {
         </div>
       </div>
       <ScrollTop />
-      <Button onClick={() => myBooks.getBooks()}></Button>
     </>
   );
 };
